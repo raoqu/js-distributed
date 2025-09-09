@@ -1,0 +1,22 @@
+app:
+  title: 配置同步
+nacos:
+  server_addr: 10.6.0.1
+  port: 8848
+  namespace: admin-prod
+  group: DEFAULT_GROUP
+  log_dir: ./nacos
+database:
+  mysql: []
+  redis:
+    addr: 127.0.0.1:6379
+    db: 3
+    dbConfig: 11
+    enable: true
+script:
+  endpoint: config
+  groupName: config_scripts
+web:
+  enable: true
+  port: 7788
+  static: static

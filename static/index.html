@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.AppTitle}}</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <!-- Monaco Editor CDN -->
+    <link rel="stylesheet" data-name="vs/editor/editor.main" href="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.34.1/min/vs/editor/editor.main.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <div class="sidebar">
+                <div class="sidebar-header">
+                    <h2>{{.AppTitle}}脚本管理</h2>
+                    <div class="sidebar-actions">
+                        <button id="import-btn" class="btn btn-secondary">导入</button>
+                        <button id="export-btn" class="btn btn-secondary">导出</button>
+                        <button id="new-task-btn" class="btn btn-primary">创建</button>
+                    </div>
+                </div>
+                <div class="task-list-container">
+                    <ul id="task-list" class="task-list">
+                        <!-- Task list will be populated dynamically -->
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="editor-container">
+                <div class="editor-header">
+                    <input type="text" id="task-name" placeholder="Task name" disabled>
+                    <div class="editor-actions">
+                        <button id="save-btn" class="btn btn-primary" disabled>Save</button>
+                        <button id="delete-btn" class="btn btn-danger" disabled>Delete</button>
+                        <button id="run-btn" class="btn btn-success" disabled>Run</button>
+                        <button id="browse-btn" class="btn btn-success" disabled>Browse</button>
+                    </div>
+                </div>
+                <div id="editor-wrapper" style="position: relative; height: calc(100% - 50px); width: 100%;">                    
+                    <div id="editor" style="position: absolute; top: 0; right: 0; bottom: 0; left: 0;"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Create New Task</h2>
+                <input type="text" id="new-task-name" placeholder="Enter task name">
+                <button id="create-task-btn" class="btn btn-primary">Create</button>
+            </div>
+        </div>
+        
+        <div id="import-modal" class="modal">
+            <div class="modal-content">
+                <span class="close import-close">&times;</span>
+                <h2>Import Scripts</h2>
+                <p>Select a zip file containing JavaScript task scripts to import.</p>
+                <form id="import-form" enctype="multipart/form-data">
+                    <input type="file" id="zip-file" name="zipfile" accept=".zip" required>
+                    <div class="modal-actions">
+                        <button type="submit" id="import-submit-btn" class="btn btn-primary">Import</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- App Configuration -->
+    <script>
+        // Initialize app configuration
+        window.appConfig = {
+            scriptEndpoint: '{{.ScriptEndpoint}}' // Will be replaced by the server
+        };
+    </script>
+    
+    <!-- Monaco Editor dependencies -->
+    <script>var require = { paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.34.1/min/vs' } };</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.34.1/min/vs/loader.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.34.1/min/vs/editor/editor.main.nls.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.34.1/min/vs/editor/editor.main.min.js"></script>
+    
+    <!-- Application scripts -->
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
