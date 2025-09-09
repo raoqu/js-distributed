@@ -1,6 +1,6 @@
 # Go + Javascript 脚本化业务框架
 
-本仓库代码的目标是基本Go搭建一个分布式业务构架，提供常见业务的基础框架和中间件能力支持。上层支持通过 Javascript 脚本化来快速完成业务。
+本仓库代码的目标是基于Go搭建一个分布式业务构架，提供常见业务的基础框架和中间件能力支持。上层支持通过 Javascript 脚本化来快速完成业务。
 
 思路上，使用 Go 为微服务应用提供稳定并轻量的底层框架能力（相比 Java 等资源消耗型框架），借助 Javascript 动态语言的能力完成细粒度和灵活的业务变更。
 
@@ -60,3 +60,14 @@
 文件 `config.yaml` 是运行所需的配置文件，用于定义 nacos、mysql、redis 配置，以及 webs server API 路径配置。
 
 通过修改配置，很容易实现不同端点的 API 配置。
+
+### MySQL 配置
+
+通过连接字符串配置，配置示例：
+
+```yaml
+database:
+  mysql: 
+    - name: default
+      connString: user:password@tcp(host:3306)/db_name?timeout=10s
+```
